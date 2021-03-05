@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    network_mode: host
+
+  accounts:
+    build: .
+    volumes:
+      - .:/frontend
+    command: /bin/sh -c "node_modules/.bin/ts-node-dev -P /frontend/microservices/accounts/tsconfig.json --no-notify --all-deps /frontend/microservices/accounts/server.ts"
+    network_mode: host
