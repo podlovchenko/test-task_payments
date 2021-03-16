@@ -2,10 +2,7 @@ import {
     Injectable,
 } from '@nestjs/common';
 import {
-    InjectRepository,
-} from '@nestjs/typeorm';
-import {
-    Repository,
+    EntityManager,
 } from 'typeorm';
 
 import {
@@ -14,18 +11,34 @@ import {
 
 @Injectable()
 export class ClientService {
-    constructor(
-        @InjectRepository(ClientEntity)
-        private readonly clientRepository: Repository<ClientEntity>
-    ) {}
+    constructor() {}
 
-    findOne(email: string) {
-        return this.clientRepository.findOne({email});
+    findOne(entityManager: EntityManager, email: string) {
+        return entityManager
+            .createQueryBuilder()
+            .setLock('pessimistic_write')
+            .select('client_entity')
+            .from(ClientEntity, 'client_entity')
+            .where('client_entity.email = :email', {
+                email,
+            })
+            .getOne();
     }
 
-    create(email: string) {
-        return this.clientRepository.save({
-            email
-        });
+    async create(entityManager: EntityManager, email: string) {
+        const {
+            raw,
+        } = await entityManager
+                .createQueryBuilder()
+                .insert()
+                .into(ClientEntity)
+                .values([
+                    {
+                        email,
+                    },
+                ])
+                .execute();
+
+        return raw[0].id;
     }
 }
