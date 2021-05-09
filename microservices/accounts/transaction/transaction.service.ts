@@ -2,10 +2,7 @@ import {
     Injectable,
 } from '@nestjs/common';
 import {
-    InjectRepository,
-} from '@nestjs/typeorm';
-import {
-    Repository,
+    EntityManager,
 } from 'typeorm';
 
 import {
@@ -14,13 +11,19 @@ import {
 
 @Injectable()
 export class TransactionService {
-    constructor(
-        @InjectRepository(TransactionEntity)
-        private readonly transactionRepository: Repository<TransactionEntity>
-    ) {
-    }
+    constructor() {}
 
-    add(entity: Partial<TransactionEntity>) {
-        return this.transactionRepository.save(entity);
+    async add(entityManager: EntityManager, entity: Partial<TransactionEntity>) {
+        const {
+            raw,
+        } = await entityManager
+            .createQueryBuilder()
+            .insert()
+            .into(TransactionEntity)
+            .values([
+                entity,
+            ])
+            .execute()
+        return raw[0];
     }
 }
