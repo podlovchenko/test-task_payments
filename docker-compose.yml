@@ -11,7 +11,8 @@ services:
 
   accounts:
     build: .
-    volumes:
-      - .:/frontend
-    command: /bin/sh -c "node_modules/.bin/ts-node-dev -P /frontend/microservices/accounts/tsconfig.json --no-notify --all-deps /frontend/microservices/accounts/server.ts"
+    command: /bin/sh -c "/app/node_modules/.bin/ts-node-dev -P /app/microservices/accounts/tsconfig.json --no-notify --all-deps /app/microservices/accounts/server.ts"
     network_mode: host
+    depends_on:
+      - postgres
+
