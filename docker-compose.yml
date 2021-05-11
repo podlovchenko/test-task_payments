@@ -13,6 +13,4 @@ services:
     build: .
     command: /bin/sh -c "/app/node_modules/.bin/ts-node-dev -P /app/microservices/accounts/tsconfig.json --no-notify --all-deps /app/microservices/accounts/server.ts"
     network_mode: host
-    depends_on:
-      - postgres
 
