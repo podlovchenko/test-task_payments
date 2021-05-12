@@ -1,6 +1,6 @@
 FROM node:latest
 
-COPY ./app /app
-WORKDIR /app
+COPY ./ /
+WORKDIR /
 
 RUN npm install
