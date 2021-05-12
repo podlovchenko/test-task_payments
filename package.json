@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
+    "start": "/node_modules/.bin/ts-node-dev -P /app/microservices/accounts/tsconfig.json --no-notify --all-deps /app/microservices/accounts/server.ts",
     "lint": "tslint -p ./app"
   },
   "keywords": [],
