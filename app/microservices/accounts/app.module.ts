@@ -18,8 +18,8 @@ import {
     TransactionModule,
 } from './transaction/transaction.module';
 
-// @ts-ignore
-const parseDbUrl = require('parse-database-url');
+import parseDbUrlfrom 'parse-database-url';
+
 const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL) : {
     driver: 'localhost',
     port: 5432,
@@ -28,8 +28,6 @@ const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL)
     database: 'postgres',
 };
 
-// @ts-ignore
-console.log(dbConfig);
 
 @Module({
     imports: [
