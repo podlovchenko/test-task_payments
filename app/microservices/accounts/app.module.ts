@@ -22,7 +22,7 @@ import {
     imports: [
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'localhost',
+            host: 'postgresql-trapezoidal-19683',
             port: 5432,
             username: 'postgres',
             password: 'postgres',
