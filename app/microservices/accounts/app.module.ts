@@ -20,7 +20,6 @@ import {
 
 const parseDbUrl = require('parse-database-url');
 const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL) : {
-    type: 'postgres',
     host: 'localhost',
     port: 5432,
     username: 'postgres',
@@ -32,6 +31,7 @@ const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL)
     imports: [
         TypeOrmModule.forRoot({
             ...dbConfig,
+            type: 'postgres',
             ssl: true,
             extra: {
                 ssl: {
