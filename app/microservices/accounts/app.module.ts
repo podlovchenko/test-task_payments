@@ -29,6 +29,12 @@ import {
             database:  process.env.DATABASE_URL ? 'd9p8gs7vi8vu1' : 'postgres',
             autoLoadEntities: true,
             synchronize: true,
+            ssl: true,
+	    extra: {
+	        ssl: {
+	            rejectUnauthorized: false,
+	        },
+	    },
         }),
         AccountModule,
         ClientModule,
