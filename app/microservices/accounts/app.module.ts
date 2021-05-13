@@ -18,7 +18,7 @@ import {
     TransactionModule,
 } from './transaction/transaction.module';
 
-import parseDbUrlfrom 'parse-database-url';
+import parseDbUrl from 'parse-database-url';
 
 const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL) : {
     driver: 'localhost',
