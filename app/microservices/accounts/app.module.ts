@@ -27,6 +27,8 @@ const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL)
     database: 'postgres',
 };
 
+console.log(dbConfig);
+
 @Module({
     imports: [
         TypeOrmModule.forRoot({
