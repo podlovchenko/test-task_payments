@@ -20,9 +20,9 @@ import {
 
 const parseDbUrl = require('parse-database-url');
 const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL) : {
-    host: 'localhost',
+    driver: 'localhost',
     port: 5432,
-    username: 'postgres',
+    user: 'postgres',
     password: 'postgres',
     database: 'postgres',
 };
@@ -33,7 +33,8 @@ console.log(dbConfig);
     imports: [
         TypeOrmModule.forRoot({
             ...dbConfig,
-            type: 'postgres',
+            type: dbConfig.driver,
+            username: dbConfig.user,
             ssl: true,
             extra: {
                 ssl: {
