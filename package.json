@@ -33,6 +33,7 @@
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.6",
+    "ts-parse-database-url": "^1.0.3",
     "typeorm": "^0.2.31"
   }
 }

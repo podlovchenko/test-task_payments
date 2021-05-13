@@ -18,10 +18,10 @@ import {
     TransactionModule,
 } from './transaction/transaction.module';
 
-import parseDbUrl from 'parse-database-url';
+import parseDbUrl from 'ts-parse-database-url';
 
 const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL) : {
-    driver: 'localhost',
+    host: 'localhost',
     port: 5432,
     user: 'postgres',
     password: 'postgres',
@@ -33,7 +33,7 @@ const dbConfig = process.env.DATABASE_URL ? parseDbUrl(process.env.DATABASE_URL)
     imports: [
         TypeOrmModule.forRoot({
             ...dbConfig,
-            type: dbConfig.driver,
+            type: 'postgres',
             username: dbConfig.user,
             ssl: true,
             extra: {
